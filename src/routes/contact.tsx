@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Download, Linkedin, Mail, MapPin, Phone } from "lucide-react";
+import { Download, Linkedin, MapPin } from "lucide-react";
 
 import { PageIntro } from "@/components/site/PageIntro";
 import { Button } from "@/components/ui/button";
@@ -11,7 +11,7 @@ export const Route = createFileRoute("/contact")({
       { title: "Contacto | Lady Milena Almonacid" },
       {
         name: "description",
-        content: "Contacta a Lady Milena Almonacid, Senior Software QA Engineer, por email o LinkedIn.",
+        content: "Contacta a Lady Milena Almonacid, Senior Software QA Engineer, por LinkedIn.",
       },
       { property: "og:title", content: "Contacto | Lady Milena Almonacid" },
       {
@@ -27,13 +27,6 @@ export const Route = createFileRoute("/contact")({
 
 function ContactPage() {
   const items = [
-    {
-      icon: Mail,
-      label: "Email",
-      value: PROFILE.emails[0],
-      href: `mailto:${PROFILE.emails[0]}`,
-    },
-    { icon: Phone, label: "Teléfono", value: PROFILE.phone, href: PROFILE.phoneHref },
     {
       icon: Linkedin,
       label: "LinkedIn",
