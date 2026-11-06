@@ -19,6 +19,13 @@ export const PROFILE = {
   ],
 };
 
+export const LANGUAGES = [
+  { name: "Español", level: "Nativo" },
+  { name: "Inglés", level: "Avanzado" },
+];
+
+export const SOFT_SKILLS = ["Proactiva", "Resolutiva", "Adaptable", "Trabajo en equipo"];
+
 export const STATS = [
   { value: "10+", label: "años en QA" },
   { value: "6", label: "empresas" },

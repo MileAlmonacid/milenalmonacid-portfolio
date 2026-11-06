@@ -32,3 +32,4 @@ use the editor.
 ## Project rules
 - Shared site chrome (header, footer, toaster) is rendered in `src/routes/__root.tsx` around `<Outlet />`; site-level components live in `src/components/site/` so every page shares one layout.
 - Visual effects (neon cards, gradients, glows, grid) are `@utility` classes and tokens in `src/styles.css`; components reference them instead of ad hoc colors so the theme stays in one place.
+- The portfolio is one scrolling page (`src/routes/index.tsx`) with hash-anchor sections, per the user's explicit choice to mirror a single-page reference template.
