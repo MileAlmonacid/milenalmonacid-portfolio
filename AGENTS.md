@@ -28,3 +28,7 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+- Shared site chrome (header, footer, toaster) is rendered in `src/routes/__root.tsx` around `<Outlet />`; site-level components live in `src/components/site/` so every page shares one layout.
+- Visual effects (neon cards, gradients, glows, grid) are `@utility` classes and tokens in `src/styles.css`; components reference them instead of ad hoc colors so the theme stays in one place.
