@@ -1,9 +1,9 @@
 import { Link } from "@tanstack/react-router";
-import { Download, Menu } from "lucide-react";
+import { Download, Menu, X } from "lucide-react";
+import { useState } from "react";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
 const NAV = [
   { to: "/", label: "Home" },
@@ -33,6 +33,8 @@ function Logo() {
 }
 
 export function SiteHeader() {
+  const [open, setOpen] = useState(false);
+
   return (
     <header className="glass sticky top-0 z-50 border-b border-border/60">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
@@ -58,31 +60,41 @@ export function SiteHeader() {
             <span>Descargar CV</span>
           </Button>
 
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden" aria-label="Abrir menú">
-                <Menu />
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="border-border bg-background">
-              <SheetTitle className="font-mono text-primary-glow">{"</>"}</SheetTitle>
-              <nav className="mt-8 flex flex-col gap-1">
-                {NAV.map((item) => (
-                  <Link
-                    key={item.to}
-                    to={item.to}
-                    activeOptions={{ exact: true }}
-                    className="rounded-lg px-3 py-2.5 text-base text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
-                    activeProps={{ className: "bg-secondary text-foreground" }}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </nav>
-            </SheetContent>
-          </Sheet>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden"
+            aria-label={open ? "Cerrar menú" : "Abrir menú"}
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? <X /> : <Menu />}
+          </Button>
         </div>
       </div>
+
+      {open && (
+        <nav
+          id="mobile-nav"
+          className="animate-fade-up border-t border-border/60 px-5 pb-5 pt-3 md:hidden"
+        >
+          <div className="flex flex-col gap-1">
+            {NAV.map((item) => (
+              <Link
+                key={item.to}
+                to={item.to}
+                activeOptions={{ exact: true }}
+                onClick={() => setOpen(false)}
+                className="rounded-lg px-3 py-2.5 text-base text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                activeProps={{ className: "bg-secondary text-foreground" }}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        </nav>
+      )}
     </header>
   );
 }
