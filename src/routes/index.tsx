@@ -2,17 +2,18 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check, Cog, ShieldCheck, Zap } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { PROFILE, STATS } from "@/content/cv";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Senior Software QA Engineer | Portafolio" },
+      { title: "Lady Milena Almonacid | Senior Software QA Engineer" },
       {
         name: "description",
         content:
-          "Ingeniera de Sistemas experta en QA Manual y Automatización, metodologías ágiles y testing de APIs.",
+          "Lady Milena Almonacid, Senior Software QA Engineer con más de 10 años en QA manual, automatización, testing de APIs y Agile.",
       },
-      { property: "og:title", content: "Senior Software QA Engineer | Portafolio" },
+      { property: "og:title", content: "Lady Milena Almonacid | Senior Software QA Engineer" },
       {
         property: "og:description",
         content:
@@ -30,27 +31,27 @@ const PILLARS = [
     icon: ShieldCheck,
     title: "Metodología QA",
     description:
-      "Planificación de pruebas, análisis de requerimientos y diseño de estrategias de testing eficaces que detectan riesgos desde el inicio.",
+      "Análisis de requerimientos, planes de prueba y casos detallados con trazabilidad completa. Procesos de QA SignOff, GO / NO GO, Smoke, Regresión, UAT y E2E.",
   },
   {
     icon: Cog,
     title: "Automatización y APIs",
     description:
-      "Pruebas funcionales y automatizadas, junto con testing de APIs, para garantizar un software robusto, estable y escalable.",
+      "Pruebas funcionales, de integración y testing de APIs, con automatización en Selenium, WebDriver y Cucumber para un software robusto y estable.",
   },
   {
     icon: Zap,
     title: "Agile & DevOps",
     description:
-      "Integración en equipos Scrum y Kanban, impulsando la mejora continua en todo el ciclo de vida del desarrollo.",
+      "Integración en equipos Scrum y Kanban con Jira y Azure DevOps, aplicando TDD, BDD y CI/CD para la mejora continua del ciclo de vida del software.",
   },
 ];
 
 const TEST_LINES = [
-  "auth/login.spec.ts",
-  "checkout/payment.spec.ts",
-  "api/users.contract.ts",
-  "e2e/onboarding.flow.ts",
+  "smoke/login.feature",
+  "regression/checkout.feature",
+  "api/users.contract.test",
+  "e2e/onboarding.flow",
 ];
 
 function TestRunCard() {
@@ -65,7 +66,7 @@ function TestRunCard() {
           <span className="ml-3 text-xs text-muted-foreground">~/qa — test run</span>
         </div>
         <p className="mt-4 text-muted-foreground">
-          <span className="text-primary">$</span> npm run test:regression
+          <span className="text-primary">$</span> mvn test -Dcucumber.tags=@release
         </p>
         <ul className="mt-3 space-y-2">
           {TEST_LINES.map((line, i) => (
@@ -89,7 +90,7 @@ function TestRunCard() {
             <div className="h-full w-full rounded-full bg-gradient-primary" />
           </div>
           <p className="mt-4 text-muted-foreground">
-            <span className="text-primary">✓</span> Ready to ship
+            <span className="text-primary">✓</span> QA SignOff: GO
             <span className="animate-blink ml-1 inline-block h-4 w-2 translate-y-0.5 bg-primary-glow" />
           </p>
         </div>
@@ -112,7 +113,7 @@ function Index() {
           <div>
             <div className="animate-fade-up inline-flex items-center gap-2 rounded-full border border-neon/40 bg-primary/10 px-3 py-1 text-xs font-medium text-primary-glow">
               <span className="h-1.5 w-1.5 rounded-full bg-success" />
-              Senior Software QA Engineer
+              {PROFILE.fullName} · {PROFILE.role}
             </div>
             <h1
               className="animate-fade-up mt-6 text-4xl font-extrabold leading-[1.05] sm:text-5xl lg:text-6xl"
@@ -146,6 +147,18 @@ function Index() {
                 Hablemos →
               </Link>
             </div>
+            <dl
+              className="animate-fade-up mt-12 grid max-w-md grid-cols-3 gap-6 border-t border-border/70 pt-6"
+              style={{ animationDelay: "320ms" }}
+            >
+              {STATS.map((stat) => (
+                <div key={stat.label}>
+                  <dt className="sr-only">{stat.label}</dt>
+                  <dd className="font-display text-2xl font-bold text-foreground">{stat.value}</dd>
+                  <dd className="mt-1 text-xs text-muted-foreground">{stat.label}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
 
           <div className="animate-fade-up" style={{ animationDelay: "200ms" }}>

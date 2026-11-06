@@ -1,16 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { PageIntro } from "@/components/site/PageIntro";
+import { SKILL_GROUPS } from "@/content/cv";
 
 export const Route = createFileRoute("/skills")({
   head: () => ({
     meta: [
-      { title: "Habilidades | Senior Software QA Engineer" },
+      { title: "Habilidades | Lady Milena Almonacid" },
       {
         name: "description",
-        content: "Habilidades en QA manual, automatización de pruebas, testing de APIs y Agile.",
+        content:
+          "QA manual, API testing, Selenium, Cucumber, Jira, Azure DevOps, Scrum, Kanban, SQL y más.",
       },
-      { property: "og:title", content: "Habilidades | Senior Software QA Engineer" },
+      { property: "og:title", content: "Habilidades | Lady Milena Almonacid" },
       {
         property: "og:description",
         content: "Stack de testing, herramientas y metodologías de aseguramiento de calidad.",
@@ -22,36 +24,32 @@ export const Route = createFileRoute("/skills")({
   component: SkillsPage,
 });
 
-const SKILLS = [
-  "QA Manual",
-  "Automatización de pruebas",
-  "Testing de APIs",
-  "Pruebas funcionales",
-  "Pruebas de regresión",
-  "Análisis de requerimientos",
-  "Planes y casos de prueba",
-  "Scrum",
-  "Kanban",
-  "Mejora continua",
-];
-
 function SkillsPage() {
   return (
     <PageIntro
       eyebrow="// Skills"
-      title="Habilidades y herramientas"
-      description="Un conjunto de prácticas y conocimientos para cubrir la calidad de punta a punta."
+      title="Habilidades técnicas"
+      description="Prácticas, herramientas y tecnologías para cubrir la calidad de punta a punta."
     >
-      <ul className="flex flex-wrap gap-3">
-        {SKILLS.map((skill) => (
-          <li
-            key={skill}
-            className="rounded-full border border-neon/40 bg-primary/10 px-4 py-2 text-sm text-foreground"
-          >
-            {skill}
-          </li>
+      <div className="grid gap-6 sm:grid-cols-2">
+        {SKILL_GROUPS.map((group) => (
+          <section key={group.title} className="neon-card rounded-2xl p-6">
+            <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-primary">
+              {group.title}
+            </h2>
+            <ul className="mt-4 flex flex-wrap gap-2">
+              {group.items.map((skill) => (
+                <li
+                  key={skill}
+                  className="rounded-full border border-neon/40 bg-primary/10 px-3 py-1.5 text-sm text-foreground"
+                >
+                  {skill}
+                </li>
+              ))}
+            </ul>
+          </section>
         ))}
-      </ul>
+      </div>
     </PageIntro>
   );
 }

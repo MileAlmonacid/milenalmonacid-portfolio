@@ -1,19 +1,22 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Award, GraduationCap } from "lucide-react";
 
 import { PageIntro } from "@/components/site/PageIntro";
+import { CERTIFICATIONS, EDUCATION, PROFILE } from "@/content/cv";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "Sobre mí | Senior Software QA Engineer" },
+      { title: "Sobre mí | Lady Milena Almonacid" },
       {
         name: "description",
-        content: "Conoce a la Ingeniera de Sistemas detrás de este portafolio de QA y automatización.",
+        content:
+          "Ingeniera de Sistemas y Senior QA Engineer con más de 10 años de experiencia, certificada ISTQB® y Scrum.",
       },
-      { property: "og:title", content: "Sobre mí | Senior Software QA Engineer" },
+      { property: "og:title", content: "Sobre mí | Lady Milena Almonacid" },
       {
         property: "og:description",
-        content: "Ingeniera de Sistemas apasionada por la calidad del software y la mejora continua.",
+        content: "Trayectoria, formación y certificaciones de Lady Milena Almonacid, Senior QA Engineer.",
       },
       { property: "og:type", content: "profile" },
       { name: "twitter:card", content: "summary" },
@@ -26,8 +29,50 @@ function AboutPage() {
   return (
     <PageIntro
       eyebrow="// About"
-      title="Ingeniera de Sistemas enfocada en la calidad"
-      description="Combino visión técnica y de negocio para que cada lanzamiento llegue estable, confiable y alineado con lo que el usuario espera."
-    />
+      title={PROFILE.fullName}
+      description="Ingeniera de Sistemas apasionada por asegurar la calidad del software, optimizar estrategias de prueba e impulsar la mejora continua de los procesos de QA."
+    >
+      <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr]">
+        <div className="space-y-5 text-lg leading-relaxed text-muted-foreground">
+          {PROFILE.summary.map((p) => (
+            <p key={p.slice(0, 24)}>{p}</p>
+          ))}
+        </div>
+
+        <div className="space-y-6">
+          <section className="neon-card rounded-2xl p-6">
+            <h2 className="flex items-center gap-2 text-lg font-semibold">
+              <GraduationCap className="h-5 w-5 text-primary-glow" strokeWidth={1.5} />
+              Formación
+            </h2>
+            <ul className="mt-4 space-y-4">
+              {EDUCATION.map((e) => (
+                <li key={e.title}>
+                  <p className="font-medium text-foreground">{e.title}</p>
+                  <p className="text-sm text-muted-foreground">
+                    {e.place} · {e.year}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section className="neon-card rounded-2xl p-6">
+            <h2 className="flex items-center gap-2 text-lg font-semibold">
+              <Award className="h-5 w-5 text-primary-glow" strokeWidth={1.5} />
+              Certificaciones
+            </h2>
+            <ul className="mt-4 space-y-3">
+              {CERTIFICATIONS.map((c) => (
+                <li key={c.title}>
+                  <p className="text-sm font-medium text-foreground">{c.title}</p>
+                  <p className="text-xs text-muted-foreground">{c.issuer}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
+      </div>
+    </PageIntro>
   );
 }

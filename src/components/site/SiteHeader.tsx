@@ -1,9 +1,9 @@
 import { Link } from "@tanstack/react-router";
 import { Download, Menu, X } from "lucide-react";
 import { useState } from "react";
-import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
+import { CV_FILENAME, CV_URL, PROFILE } from "@/content/cv";
 
 const NAV = [
   { to: "/", label: "Home" },
@@ -13,12 +13,6 @@ const NAV = [
   { to: "/contact", label: "Contact" },
 ] as const;
 
-function handleDownloadCv() {
-  toast("CV disponible muy pronto", {
-    description: "Mientras tanto, puedes escribirme desde la página de contacto.",
-  });
-}
-
 function Logo() {
   return (
     <Link to="/" className="group flex items-center gap-2" aria-label="Inicio">
@@ -26,7 +20,8 @@ function Logo() {
         {"</>"}
       </span>
       <span className="hidden font-display text-sm font-semibold tracking-tight sm:inline">
-        QA<span className="text-primary">.</span>Engineer
+        {PROFILE.shortName}
+        <span className="text-primary">.</span>
       </span>
     </Link>
   );
@@ -55,9 +50,11 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Button variant="neon" size="pill" onClick={handleDownloadCv}>
-            <Download />
-            <span>Descargar CV</span>
+          <Button asChild variant="neon" size="pill">
+            <a href={CV_URL} download={CV_FILENAME} target="_blank" rel="noopener">
+              <Download />
+              <span>Descargar CV</span>
+            </a>
           </Button>
 
           <Button

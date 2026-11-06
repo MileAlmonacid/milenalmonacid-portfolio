@@ -81,12 +81,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Senior Software QA Engineer | Portafolio" },
+      { title: "Lady Milena Almonacid | Senior Software QA Engineer" },
       {
         name: "description",
         content: "Portafolio de una Senior Software QA Engineer: QA manual, automatización y Agile.",
       },
-      { property: "og:title", content: "Senior Software QA Engineer | Portafolio" },
+      { property: "og:title", content: "Lady Milena Almonacid | Senior Software QA Engineer" },
       {
         property: "og:description",
         content: "Portafolio de una Senior Software QA Engineer: QA manual, automatización y Agile.",
